@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find freenect_launch)/launch/examples/freenect-registered-xyzrgb.launch"/>
+    <node name="matlab_do" pkg="feedbot_perception" type="run_matlab_do.sh" output="screen"/>
+    <node name="pc_downsampling" pkg="pcdownsampling" type="pcdownsampling_node"/>
+    <node name="mtcnn_node" pkg="initialization_mtcnn" type="initialization_mtcnn_node"/>
+</launch>
