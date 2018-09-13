@@ -1,9 +1,21 @@
 <launch>
     <arg name="simulate_mouth" default="false"/>
+    <arg name="filter_robot" default="false"/>
+
     <group unless="$(arg simulate_mouth)">
+      <group if="$(arg filter_robot)">
+        <node name="pc_downsampling" pkg="pcdownsampling" type="pcdownsampling_node" output="screen">
+          <param name="in_point_topic" value="/self_filter/output"/> 
+        </node>
+      </group>
+      <group unless="$(arg filter_robot)">
+        <node name="pc_downsampling" pkg="pcdownsampling" type="pcdownsampling_node" output="screen">
+          <param name="in_point_topic" value="/camera/depth_registered/points"/> 
+        </node>
+      </group>
+      <include file="$(find robot_self_filter)/launch/example.launch" if="$(arg filter_robot)"/>
       <include file="$(find freenect_launch)/launch/examples/freenect-registered-xyzrgb.launch"/>
       <node name="matlab_do" pkg="feedbot_launch" type="run_matlab_do.sh" output="screen"/>
-      <node name="pc_downsampling" pkg="pcdownsampling" type="pcdownsampling_node"/>
       <node name="mtcnn_node" pkg="initialization_mtcnn" type="initialization_mtcnn_node">
         <param name="mtcnn_model_path" value="$(find initialization_mtcnn)/model"/>
       </node>

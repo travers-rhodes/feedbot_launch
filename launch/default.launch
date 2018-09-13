@@ -2,9 +2,11 @@
     <arg name="sim"/>
     <arg name="simulate_spoon" default="$(arg sim)"/>
     <arg name="simulate_mouth" default="$(arg sim)"/>
+    <arg name="filter_robot" default="false"/>
 
     <include file="$(find feedbot_launch)/launch/mouth_tracking.launch">
       <arg name="simulate_mouth" value="$(arg simulate_mouth)"/>
+      <arg name="filter_robot" value="$(arg filter_robot)"/>
     </include>
     <include file="$(find spoon_perception)/launch/default.launch" unless="$(arg simulate_spoon)"/>
     <include file="$(find niryo_one_tutorial)/launch/default.launch">
