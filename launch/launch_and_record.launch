@@ -4,6 +4,7 @@
     <arg name="simulate_mouth" default="$(arg sim)"/>
     <arg name="follow_mouth" default="false"/>
     <arg name="filter_robot" default="false"/>
+    <arg name="no_robot" default="false"/>
 
     <include file="$(find feedbot_launch)/launch/default.launch">
       <arg name="sim" value="$(arg sim)"/>
@@ -11,6 +12,7 @@
       <arg name="simulate_spoon" value="$(arg simulate_spoon)"/>
       <arg name="follow_mouth" value="$(arg follow_mouth)"/>
       <arg name="filter_robot" value="$(arg filter_robot)"/>
+      <arg name="no_robot" value="$(arg no_robot)"/>
     </include>
 
     <include file="$(find record_mocap)/launch/default.launch">

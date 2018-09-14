@@ -4,15 +4,26 @@
     <arg name="simulate_mouth" default="$(arg sim)"/>
     <arg name="follow_mouth" default="false"/>
     <arg name="filter_robot" default="false"/>
+    <arg name="no_robot" default="false"/>
 
     <include file="$(find feedbot_launch)/launch/mouth_tracking.launch" unless="$(arg simulate_mouth)">
       <arg name="simulate_mouth" value="$(arg simulate_mouth)"/>
       <arg name="filter_robot" value="$(arg filter_robot)"/>
     </include>
     <include file="$(find spoon_perception)/launch/default.launch" unless="$(arg simulate_spoon)"/>
-    <include file="$(find niryo_one_tutorial)/launch/default.launch">
-      <arg name="sim" value="$(arg sim)"/>
-      <arg name="follow_mouth" value="$(arg follow_mouth)"/>
-      <arg name="simulate_spoon" value="$(arg simulate_spoon)"/>
-    </include>
+    <group unless="$(arg no_robot)">
+      <include file="$(find niryo_one_tutorial)/launch/default.launch">
+        <arg name="sim" value="$(arg sim)"/>
+        <arg name="follow_mouth" value="$(arg follow_mouth)"/>
+        <arg name="simulate_spoon" value="$(arg simulate_spoon)"/>
+      </include>
+    </group>
+    <group if="$(arg no_robot)">
+      <node name="camera_calibration" pkg="niryo_one_tutorial" type="camera_calibration.py">
+        <param name="world_frame_name" value="camera_rgb_frame"/>
+        <param name="target_frame_name" value="world"/>
+      </node>
+      <node name="rviz" pkg="rviz" type="rviz" args="-d $(find record_mocap)/config/default.rviz"/> 
+    </group>
+ 
 </launch>
