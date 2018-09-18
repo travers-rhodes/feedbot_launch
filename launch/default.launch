@@ -12,14 +12,14 @@
     </include>
     <include file="$(find spoon_perception)/launch/default.launch" unless="$(arg simulate_spoon)"/>
     <group unless="$(arg no_robot)">
-      <include file="$(find niryo_one_tutorial)/launch/default.launch">
+      <include file="$(find feedbot_trajectory_logic)/launch/default.launch">
         <arg name="sim" value="$(arg sim)"/>
         <arg name="follow_mouth" value="$(arg follow_mouth)"/>
         <arg name="simulate_spoon" value="$(arg simulate_spoon)"/>
       </include>
     </group>
     <group if="$(arg no_robot)">
-      <node name="camera_calibration" pkg="niryo_one_tutorial" type="camera_calibration.py">
+      <node name="camera_calibration" pkg="feedbot_trajectory_logic" type="camera_calibration.py">
         <param name="world_frame_name" value="camera_rgb_frame"/>
         <param name="target_frame_name" value="world"/>
       </node>

@@ -21,6 +21,6 @@
       </node>
     </group>
     <group if="$(arg simulate_mouth)">
-      <node name="dummy_publisher" pkg="niryo_one_tutorial" type="dummy_mouth_publisher.py"/>
+      <node name="dummy_publisher" pkg="feedbot_trajectory_logic" type="dummy_mouth_publisher.py"/>
     </group>
 </launch>
