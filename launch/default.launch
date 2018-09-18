@@ -15,7 +15,6 @@
     <include file="$(find spoon_perception)/launch/default.launch" unless="$(arg simulate_spoon)"/>
     <group unless="$(arg no_robot)">
       <include file="$(find feedbot_trajectory_logic)/launch/default.launch">
-        <arg name="sim" value="$(arg sim)"/>
         <arg name="follow_mouth" value="$(arg follow_mouth)"/>
         <arg name="simulate_spoon" value="$(arg simulate_spoon)"/>
       </include>
