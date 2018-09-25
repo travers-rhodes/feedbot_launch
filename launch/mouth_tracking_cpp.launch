@@ -1,0 +1,11 @@
+<launch>
+    <arg name="simulate_mouth" default="false"/>
+
+    <group unless="$(arg simulate_mouth)">
+      <include file="$(find freenect_launch)/launch/examples/freenect-registered-xyzrgb.launch"/>
+      <include file="$(find ros_do_face_tracking)/launch/tracking_face_node.launch"/>
+    </group>
+    <group if="$(arg simulate_mouth)">
+      <node name="dummy_publisher" pkg="feedbot_trajectory_logic" type="dummy_mouth_publisher.py"/>
+    </group>
+</launch>
