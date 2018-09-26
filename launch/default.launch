@@ -8,7 +8,7 @@
 
     <include file="$(find niryo_one_bringup)/launch/desktop_rviz_simulation.launch" if="$(arg sim)"/>
 
-    <include file="$(find feedbot_launch)/launch/mouth_tracking_cpp.launch" unless="$(arg simulate_mouth)">
+    <include file="$(find feedbot_launch)/launch/mouth_tracking_cpp.launch" if="$(arg follow_mouth)">
       <arg name="simulate_mouth" value="$(arg simulate_mouth)"/>
     </include>
     <include file="$(find spoon_perception)/launch/default.launch" unless="$(arg simulate_spoon)"/>
