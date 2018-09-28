@@ -31,5 +31,6 @@ now, you should be able to catkin_make from ~/domus_ws successfully.
 
 To test the code, run
 ```
+source devel/setup.bash
 roslaunch feedbot_launch default.launch sim:=false
 ```
