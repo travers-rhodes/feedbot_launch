@@ -27,6 +27,11 @@ rosdep install --from-paths src --ignore-src -r -y
 
 (note that if your default "python" is python2, and your "pip" is python3, then you'll need to install your python packages manually)
 
+Install jsonpickle by running the following (we could do it with rosdep, but you'd need to add a config file to say where to find it)
+```
+pip install -U jsonpickle
+```
+
 now, you should be able to catkin_make from ~/domus_ws successfully.
 
 ### Test barebones installation
