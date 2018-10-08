@@ -29,7 +29,7 @@ rosdep install --from-paths src --ignore-src -r -y
 
 Install jsonpickle by running the following (we could do it with rosdep, but you'd need to add a config file to say where to find it)
 ```
-pip install -U jsonpickle
+pip install --user jsonpickle
 ```
 
 now, you should be able to catkin_make from ~/domus_ws successfully.
